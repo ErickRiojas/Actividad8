@@ -16,19 +16,53 @@ public class Deck {
                     deck.add(card.Palo[j] + " Negro " + card.Valor[i]);
                 }
             }
+        }
+            showMenu(deck);
+    }
+    public static void showMenu(ArrayList deck) {
+        Scanner leer = new Scanner(System.in);
+        int opc= 0;
+        for (int i = 0; i == opc; i++) {
+            System.out.println("Bienvenido a Poker! \n" + "Selecciona una de las siguientes opciones:");
+            System.out.println("1. Mezclar el deck \n" + "2. Sacar una carta");
+            System.out.println("3.Carta al azar \n" + "4. Generar una mano de 5 cartas");
+            System.out.println("0. Salir del programa\n");
+            opc = leer.nextInt();
+            switch (opc) {
+                case 0: {
+                    break;
+                }
+                case 1: {
+                    suflle(deck);
+                    break;
+                }
+                case 2: {
+                    head(deck);
+                    break;
+                }
+                case 3: {
+                    pick(deck);
+                    break;
+                }
+                case 4: {
+                    hand(deck);
+                    System.out.println("\n");
+                    break;
+                }
+                default: {
+                    System.out.println("Opcion no válida, selecciona una opción del siguiente menú: \n");
+                }
+            }
+        }
+    }
+    public static void suflle(ArrayList deck){
+
         Iterator<String> nombreIterator = deck.iterator();
         while(nombreIterator.hasNext()){
             String elemento = nombreIterator.next();
             System.out.print(elemento+" / ");
-            }
         }
 
-            suflle(deck);
-            head(deck);
-            pick(deck);
-            hand(deck);
-    }
-    public static void suflle(ArrayList deck){
         ArrayList<String> values = deck;
         Collections.shuffle(values);
         System.out.println("\nSe mezcló el deck.\n");
