@@ -43,19 +43,23 @@ public class Deck {
                             }
                             case 1: {
                                 suflle(deck);
+                                showMenu(deck);
                                 break;
                             }
                             case 2: {
                                 head(deck);
+                                showMenu(deck);
                                 break;
                             }
                             case 3: {
                                 pick(deck);
+                                showMenu(deck);
                                 break;
                             }
                             case 4: {
                                 hand(deck);
                                 System.out.println("\n");
+                                showMenu(deck);
                                 break;
                             }
                             default:
@@ -91,12 +95,18 @@ public class Deck {
     }
 
 
-    public static void head(ArrayList deck){
-        System.out.println("Tu primera carta es: " +deck.get(0) + " se removerá del deck");
+    public static void head(ArrayList deck) {
+        System.out.println("Tu primera carta es: " + deck.get(0) + " se removerá del deck");
         deck.remove(0);
-        System.out.println("Quedan " + deck.size()+ " cartas en el deck\n");
+        System.out.println("Quedan " + deck.size() + " cartas en el deck\n");
+        if (deck.size() == 0) {
+            System.out.println("Ya no tienes cartas en el deck");
+        }
+        else {
+            System.out.println("");
+            showMenu(deck);
+        }
     }
-
 
     public static void pick(ArrayList  deck){
         Random aleatorio = new Random();
