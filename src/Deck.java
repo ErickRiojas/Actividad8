@@ -2,10 +2,11 @@ import java.util.*;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.lang.IllegalArgumentException;
+import java.lang.IndexOutOfBoundsException;
 
 public class Deck {
 
-    public static void main(String[] args) throws IOException, InputMismatchException {
+    public static void main(String[] args) throws IOException, InputMismatchException,Exception {
         Card card = new Card();
         int Palos = card.Palo.length;
         int Valores = card.Valor.length;
@@ -24,14 +25,14 @@ public class Deck {
         showMenu(deck);
 
     }
-    public static void showMenu(ArrayList deck) throws InputMismatchException, IllegalArgumentException{
+    public static void showMenu(ArrayList deck) throws InputMismatchException, IllegalArgumentException,IndexOutOfBoundsException{
         Scanner leer = new Scanner(System.in);
         int opc = 0;
         boolean check = true;
         for (int i = 0; i == opc; i++) {
             do {
                 try {
-                    try{
+                    try {
                         System.out.println("Bienvenido a Poker! \n" + "Selecciona una de las siguientes opciones:");
                         System.out.println("1. Mezclar el deck \n" + "2. Sacar una carta");
                         System.out.println("3.Carta al azar \n" + "4. Generar una mano de 5 cartas");
@@ -71,13 +72,14 @@ public class Deck {
                         showMenu(deck);
                     }
 
-                    } catch (IllegalArgumentException e) {
+                } catch (IllegalArgumentException e) {
                     System.out.println("Debes elegir una opción entre el número 0 y 4");
                     showMenu(deck);
-                }
-            }while (check !=true);
+                }while (deck.size() == 0 ) throw new IndexOutOfBoundsException("Ya no hay cartas en el deck");
+            } while (check != true);
         }
-    }
+        }
+
 
 
 
@@ -99,12 +101,8 @@ public class Deck {
         System.out.println("Tu primera carta es: " + deck.get(0) + " se removerá del deck");
         deck.remove(0);
         System.out.println("Quedan " + deck.size() + " cartas en el deck\n");
-        if (deck.size() == 0) {
-            System.out.println("Ya no tienes cartas en el deck");
-        }
-        else {
-            System.out.println("");
-            showMenu(deck);
+        if(deck.size() == 0){
+            System.out.println("Ya no hay mas cartas");
         }
     }
 
